@@ -67,7 +67,10 @@ if __name__ == '__main__':
         video = cv2.VideoCapture(sys.argv[1])
         while True:
             ret, frame = video.read()
+            if not ret:
+                break
             process_frame(frame, True)
+            frame = cv2.resize(frame, None, fx=0.5, fy=0.5, interpolation=cv2.INTER_AREA)
             cv2.imshow('Video', frame)
 
             if cv2.waitKey(10) & 0xFF == ord('q'):
