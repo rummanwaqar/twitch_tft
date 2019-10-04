@@ -82,7 +82,7 @@ class DamageWindow(object):
         self.damage_bars = DamageWindow.GenerateDamageBars(anchor, dim, padding, 10)
 
         # this section is used to test if window is open
-        test_dim = (0.07 * dim[0], (dim[1] + padding) * 10 - padding)
+        test_dim = (0.07 * dim[0], (dim[1] + padding) * 3 - padding)
         self.open_test_section = BoundingBoxObject(anchor[0] - test_dim[0] - 2, anchor[1], test_dim[0], test_dim[1], (255,255,0))
         self.open_color = np.array([31, 32, 21])
         # if image is provided calculate open region color
