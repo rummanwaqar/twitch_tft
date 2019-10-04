@@ -1,6 +1,7 @@
 import cv2
 from damage_window import DamageWindowBuilder
 from template_matching import CharMatching, LevelMatching
+from text_detection import NumberDetector
 
 
 class Champion(object):
@@ -21,10 +22,13 @@ class Champion(object):
             self.level = 3
         else:
             # unknown level
-            self.level = 0 
+            self.level = 0
+
+    def setDmg(self, val):
+        self.dmg = val
 
     def __str__(self):
-        return "{}[lvl:{}]".format(self.name, self.level)
+        return "{}[lvl:{}; dmg:{}]".format(self.name, self.level, self.dmg)
 
     def __repr__(self):
         return self.__str__()
@@ -89,7 +93,8 @@ class GameManager(object):
         # set up detectors
         self.detectors = {
             'champion': None,
-            'stars': None
+            'stars': None,
+            'damage': None
         }
 
     def processFrame(self, img):
@@ -126,6 +131,7 @@ class GameManager(object):
             level_dim = (self.damage_window.damage_bars[0].levelStars.bbox.w, 
                         self.damage_window.damage_bars[0].levelStars.bbox.h)
             self.detectors['stars'] = LevelMatching('data/star_templates', level_dim)
+            self.detectors['damage'] = NumberDetector()
             self.initialized = True
 
     def __detectChampions(self, img):
@@ -137,6 +143,8 @@ class GameManager(object):
                 champion = Champion(champion_name)
                 level = self.detectors['stars'].find_match(damage_bar.levelStars.getImage(img))
                 champion.setLevelFromText(level)
+                dmg = self.detectors['damage'].find_match(damage_bar.dmgValue.getImage(img))
+                champion.setDmg(dmg)
                 if champion.level == 0:
                     champion = None
             championPool.append(champion)
