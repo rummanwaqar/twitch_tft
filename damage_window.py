@@ -119,14 +119,18 @@ class DamageWindow(object):
 
 class DamageWindowBuilder(object):
     NUM_BARS = 10
+    
+    # window width (used to make sure the window is fully expanded)
+    WINDOW_WIDTH = 0
 
     @staticmethod
     def InitFromCoods(top_left = [1777, 326], width = 128, height = 36, padding = 9):
         return DamageWindow(top_left, (width, height), padding)
 
     @staticmethod
-    def InitFromFrame(img):
+    def InitFromFrame(img, wait_expansion = False):
         '''
+        @param wait_expansion: if true we wait for the window to fully expand
         returns None if cannot be initialized
         '''
         # get ROI with damage bar
@@ -148,8 +152,12 @@ class DamageWindowBuilder(object):
         n_rects_above = DamageWindowBuilder.NUM_BARS - len(rects)
         if n_rects_above > 0:
             top_left[1] = top_left[1] - (height + padding) * n_rects_above
-        
-        return DamageWindow(top_left, (width, height), padding, img)
+
+        if not wait_expansion or DamageWindowBuilder.WINDOW_WIDTH == width:
+            return DamageWindow(top_left, (width, height), padding, img)
+        else:
+            DamageWindowBuilder.WINDOW_WIDTH = width
+            return
 
     @staticmethod
     def GetDamageRects(img):

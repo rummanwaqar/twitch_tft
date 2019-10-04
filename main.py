@@ -6,11 +6,10 @@ if __name__ == '__main__':
     if len(sys.argv) < 2:
         print('Usage: python main.py img|video')
         exit(1)
-
-    manager = GameManager()
     
     # process video
     if sys.argv[1].endswith('.mp4'):
+        manager = GameManager()
         video = cv2.VideoCapture(sys.argv[1])
         while True:
             ret, frame = video.read()
@@ -26,6 +25,7 @@ if __name__ == '__main__':
         video.release()
     # process image
     elif sys.argv[1].endswith('.jpg') or sys.argv[1].endswith('.bmp'):
+        manager = GameManager(single_img=True)
         img = cv2.imread(sys.argv[1])
         champions = manager.processFrame(img)
         manager.draw(img, champions)

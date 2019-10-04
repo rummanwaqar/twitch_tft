@@ -31,10 +31,12 @@ class Champion(object):
 
 
 class GameManager(object):
-    def __init__(self):
+    def __init__(self, single_img = False):
         self.initialized = False
+        self.single_img = single_img
         self.stage = 1
         self.damage_window = None
+        self.window_open = False
 
         # set up detectors
         self.detectors = {
@@ -42,28 +44,10 @@ class GameManager(object):
             'stars': None
         }
 
-        # window width (used to make sure the window is full)
-        self.window_width = (0, 0)
-        
-        # check if window is open
-        self.window_open = False
-
     def processFrame(self, img):
         if not self.initialized:
-            self.damage_window = DamageWindowBuilder.InitFromFrame(img)
-
-            if self.damage_window is not None:
-                width = self.damage_window.damage_bars[0].bbox.w
-                if self.window_width == width:
-                    champion_dim = (self.damage_window.damage_bars[0].champion.bbox.w, 
-                                    self.damage_window.damage_bars[0].champion.bbox.h)
-                    self.detectors['champion'] = CharMatching('data/champion_templates', champion_dim)
-                    level_dim = (self.damage_window.damage_bars[0].levelStars.bbox.w, 
-                                self.damage_window.damage_bars[0].levelStars.bbox.h)
-                    self.detectors['stars'] = LevelMatching('data/star_templates', level_dim)
-                    self.initialized = True
-                self.window_width = width
-
+            self.__initialize(img, single_img=self.single_img)
+        
         if self.initialized:
             championPool = []
             self.window_open = self.damage_window.isOpen(img)
@@ -92,3 +76,14 @@ class GameManager(object):
                 for champion in champions:
                     cv2.putText(img, str(champion), current_pos, cv2.FONT_HERSHEY_PLAIN, 1.2, (255, 100, 255), 2)
                     current_pos = (current_pos[0], current_pos[1] + padding)
+
+    def __initialize(self, img, single_img = False):
+        self.damage_window = DamageWindowBuilder.InitFromFrame(img, wait_expansion=not single_img)
+        if self.damage_window is not None:
+            champion_dim = (self.damage_window.damage_bars[0].champion.bbox.w, 
+                            self.damage_window.damage_bars[0].champion.bbox.h)
+            self.detectors['champion'] = CharMatching('data/champion_templates', champion_dim)
+            level_dim = (self.damage_window.damage_bars[0].levelStars.bbox.w, 
+                        self.damage_window.damage_bars[0].levelStars.bbox.h)
+            self.detectors['stars'] = LevelMatching('data/star_templates', level_dim)
+            self.initialized = True
