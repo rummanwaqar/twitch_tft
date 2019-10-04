@@ -44,6 +44,9 @@ class GameManager(object):
 
         # window width (used to make sure the window is full)
         self.window_width = (0, 0)
+        
+        # check if window is open
+        self.window_open = False
 
     def processFrame(self, img):
         if not self.initialized:
@@ -63,21 +66,25 @@ class GameManager(object):
 
         if self.initialized:
             championPool = []
-            for damage_bar in self.damage_window.damage_bars:
-                champion = None
-                champion_name = self.detectors['champion'].find_match(damage_bar.champion.getImage(img))
-                if champion_name is not None and champion_name != 'none':
-                    champion = Champion(champion_name)
-                    level = self.detectors['stars'].find_match(damage_bar.levelStars.getImage(img))
-                    champion.setLevelFromText(level)
-                    if champion.level == 0:
-                        champion = None
-                championPool.append(champion)
+            self.window_open = self.damage_window.isOpen(img)
+            if self.window_open:
+                for damage_bar in self.damage_window.damage_bars:
+                    champion = None
+                    champion_name = self.detectors['champion'].find_match(damage_bar.champion.getImage(img))
+                    if champion_name is not None and champion_name != 'none':
+                        champion = Champion(champion_name)
+                        level = self.detectors['stars'].find_match(damage_bar.levelStars.getImage(img))
+                        champion.setLevelFromText(level)
+                        if champion.level == 0:
+                            champion = None
+                    championPool.append(champion)
             return championPool
 
     def draw(self, img, champions = None, top_left = (1600, 350), padding = 45):
         if not self.initialized:
             cv2.putText(img, 'NOT INITIALIZED', (50,50), cv2.FONT_HERSHEY_PLAIN, 1.2, (0, 0, 255), 2)
+        elif not self.window_open:
+            cv2.putText(img, 'WINDOW CLOSED', (50,50), cv2.FONT_HERSHEY_PLAIN, 1.2, (0, 0, 255), 2)
         else:
             self.damage_window.draw(img)
             if champions is not None:

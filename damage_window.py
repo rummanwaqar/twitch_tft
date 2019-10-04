@@ -78,12 +78,34 @@ class DamageBar(BoundingBoxObject):
 
 
 class DamageWindow(object):
-    def __init__(self, anchor, dim, padding):
+    def __init__(self, anchor, dim, padding, img=None):
         self.damage_bars = DamageWindow.GenerateDamageBars(anchor, dim, padding, 10)
+
+        # this section is used to test if window is open
+        test_dim = (0.07 * dim[0], (dim[1] + padding) * 10 - padding)
+        self.open_test_section = BoundingBoxObject(anchor[0] - test_dim[0] - 2, anchor[1], test_dim[0], test_dim[1], (255,255,0))
+        self.open_color = np.array([31, 32, 21])
+        # if image is provided calculate open region color
+        if img is not None:
+            self.open_color = np.array(self.GetAverageColor(self.open_test_section.getImage(img)))
+
+    def isOpen(self, img):
+        '''
+        check if damage window is open
+        returns true if open
+        '''
+        color = np.array(self.GetAverageColor(self.open_test_section.getImage(img)))
+        in_range = np.logical_and(color >= self.open_color - 1.5, color <= self.open_color + 1.5)
+        return np.all(in_range)
 
     def draw(self, img):
         for bar in self.damage_bars:
             bar.draw(img)
+        self.open_test_section.draw(img)
+
+    @staticmethod
+    def GetAverageColor(img):
+        return img.mean(axis=0).mean(axis=0)
 
     @staticmethod
     def GenerateDamageBars(anchor, dim, padding, n_bars):
@@ -127,7 +149,7 @@ class DamageWindowBuilder(object):
         if n_rects_above > 0:
             top_left[1] = top_left[1] - (height + padding) * n_rects_above
         
-        return DamageWindow(top_left, (width, height), padding)
+        return DamageWindow(top_left, (width, height), padding, img)
 
     @staticmethod
     def GetDamageRects(img):
