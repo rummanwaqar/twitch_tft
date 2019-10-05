@@ -13,7 +13,6 @@ class NumberDetector:
         output = re.sub("[^0-9]", "", text_conversion)
         return output
 
-import time
 if __name__ == '__main__':
     from damage_window import DamageWindowBuilder
     img = cv2.imread('data/league_2.bmp')
@@ -23,9 +22,7 @@ if __name__ == '__main__':
 
     for i, bars in enumerate(damageWindow.damage_bars):
         dmgImg = bars.dmgValue.getImage(img)
-        start = time.time()
         output = detector.find_match(dmgImg)
-        print('took {}'.format(time.time() - start))
         if output:
             print(output)
 

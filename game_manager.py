@@ -34,7 +34,7 @@ class Champion(object):
         return self.__str__()
 
     def __eq__(self, other):
-        if self.name == other.name and self.level == other.level and self.dmg == other.dmg:
+        if other is not None and self.name == other.name and self.level == other.level and self.dmg == other.dmg:
             return True
         return False
 
@@ -61,8 +61,8 @@ class Stage(object):
         # we need three iterations with the same champions to close the stage
         self.prev_champion_lists.append(champions)
         # check if lists are the same
-        if len(self.prev_champion_lists) == 3:
-            if self.prev_champion_lists[0] == self.prev_champion_lists[1] and self.prev_champion_lists[1] == self.prev_champion_lists[2]:
+        if len(self.prev_champion_lists) == 2:
+            if self.prev_champion_lists[0] == self.prev_champion_lists[1]:
                 self.champions = self.prev_champion_lists[0]
                 self.open = False
                 return True
@@ -110,7 +110,12 @@ class GameManager(object):
 
             if self.window_open and self.stages[-1].isOpen():
                 if self.stages[-1].setChampions(self.__detectChampions(img)):
-                    print(self.stages[-1])
+                    # check to prevent false positives by making sure the current list is not
+                    # exactly equal to the previous list (statistically improbable)
+                    if len(self.stages) > 1 and self.stages[-2].getChampions() == self.stages[-1].getChampions():
+                        self.stages.pop() # remove the duplicate
+                    else:
+                        print(self.stages[-1])
 
     def draw(self, img):
         if not self.initialized:
