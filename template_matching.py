@@ -16,7 +16,11 @@ class TemplateMatching():
             templates[f.split('.')[0]] = template
         return templates
 
+    def preprocess(self, img):
+        return img
+
     def find_match(self, img):
+        img = self.preprocess(img)
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         maximum = 0
         match = None
@@ -30,22 +34,17 @@ class TemplateMatching():
 
 
 class CharMatching(TemplateMatching):
-    def __init__(self, template_loc):
-        TemplateMatching.__init__(self, template_loc, (36, 36))
+    def __init__(self, template_loc, dim):
+        TemplateMatching.__init__(self, template_loc, dim)
         for _, template in self.templates.items():
             template = self.preprocess(template)
         
     def preprocess(self, img):
-        # remove the last 6px of each image to remove stars at the bottom
-        return img[:30, :]
-
-    def find_match(self, img):
-        img = self.preprocess(img)
-        return TemplateMatching.find_match(self, img)
+        # remove the last 20% of each image to remove stars at the bottom
+        bottomLimit = int(round(self.dim[1] * 0.8))
+        return img[:bottomLimit, :]
 
 
 class LevelMatching(TemplateMatching):
-    def __init__(self, template_loc):
-        TemplateMatching.__init__(self, template_loc, (36, 10))
-
-
+    def __init__(self, template_loc, dim):
+        TemplateMatching.__init__(self, template_loc, dim)
