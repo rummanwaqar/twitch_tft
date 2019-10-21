@@ -1,0 +1,59 @@
+body {
+  background-color: powderblue;
+}
+
+div {
+  width: 508px;
+  height: 322px;
+  background-image: url("Images/background.png"); 
+  position: relative;
+}
+
+center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+
+champion {
+  position: absolute;
+  border-radius: 50%;
+  border: 5px solid #FFD700;
+}
+
+.max_damage {
+  width: 140px;
+  height: 140px;
+}
+
+.upper_mid_damage {
+    width: 110px;
+    height: 110px;
+    clip-path: circle(55px at 55px 55px);
+}
+
+.lower_mid_damage {
+  width: 80px;
+  height: 80px;
+  clip-path: circle(40px at 40px 40px);
+}
+
+.low_damage {
+  width: 50px;
+  height: 50px;
+  clip-path: circle(25px at 25px 25px);
+}
+
+img  { 
+  width: 100%;
+  height: 100%;
+}
+
+.object-fit_champion { 
+  object-fit: contain;
+  border-radius: 50%;
+}
