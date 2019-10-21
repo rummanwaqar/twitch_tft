@@ -17,5 +17,11 @@
 }
 
 #container {
-    
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+#stage_box {
+  border: 1px solid black;
+  margin: 5px;
 }
