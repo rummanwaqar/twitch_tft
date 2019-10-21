@@ -1,5 +1,10 @@
 <div>
-    <h2>Stage: {{data.stage}}</h2>
+    <h2>Stage: {{data.stage}} | Win: {{data.win}}</h2>
     <p>Health: {{data.health}}</p>
-    
+    {{#each data.champions}}
+        <div>
+            <h4>{{this.name}} | Level: {{this.level}}</h4>
+            <p>Damage: {{this.damage}}</p>
+        </div>
+    {{/each}}
 </div>
