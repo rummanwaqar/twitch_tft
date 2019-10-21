@@ -1,6 +1,17 @@
 
 <div class="stage_box {{#if data.win}}win-bg{{else}}lose-bg{{/if}}">
-    <h2>Stage: {{data.stage}} | Win: {{data.win}}</h2>
+    <div class="header">
+        <div class="left">
+            <h2>Lvl{{data.stage}}</h2>
+        </div>
+        <div class="result">
+            {{#if data.win}}
+            <i class="fa fa-check" aria-hidden="true"></i>
+            {{else}}
+            <i class="fa fa-times" aria-hidden="true"></i>
+            {{/if}}
+        </div>
+    </div>
     {{#each data.champions}}
         <div class="champion">
             <img src="images/champions/{{this.name}}.png" />

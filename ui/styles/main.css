@@ -20,22 +20,27 @@
 }
 
 body {
-  background-color: #0A0A0A;
+  background-color: #021E20;
   color: white;
 }
 
 #container {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
+  padding: 5px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
 }
 
 .stage_box {
   position: relative;
   height: 200px;
-  overflow: hidden;
-  border: 1px solid black;
-  margin: 5px;
+
+  background-color: #0A0A0A;
   background-size: contain;
+  box-shadow: 2px 2px 5px #111;
+
+  /* temp */
+  overflow: hidden;
+  margin: 5px;
 }
 
 .win-bg {
@@ -46,12 +51,33 @@ body {
   background-image: url("../images/bg-red.png");
 }
 
+.header {
+  display: flex;
+}
+
+.header .left {
+  flex: 50%;
+}
+
+.result .fa {
+  font-size: 2em;
+  padding-right: 5px;
+}
+
+.fa-check {
+  color: #3D962F;
+}
+
+.fa-times {
+  color: #C33232;
+}
+
+/* this is temp */
 .champion {
   display: inline-block;
   font-size: 0.5em;
 }
 
 .champion img {
-  /* this is temp */
   width: 20%;
 }
