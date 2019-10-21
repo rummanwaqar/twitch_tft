@@ -1,7 +1,8 @@
-<div class="stage_box">
+
+<div class="stage_box {{#if data.win}}win-bg{{else}}lose-bg{{/if}}">
     <h2>Stage: {{data.stage}} | Win: {{data.win}}</h2>
     {{#each data.champions}}
-        <div>
+        <div class="champion">
             <img src="images/champions/{{this.name}}.png" />
             <h4>{{this.name}} | Level: {{this.level}}</h4>
             <p>Damage: {{this.damage}}</p>

@@ -12,6 +12,7 @@
     line-height: 15px;
     padding-top: 1px;
     padding-right: 5px;
+    color: black;
 
     /* dynamic and replaces with JS*/
     width: 50%;
