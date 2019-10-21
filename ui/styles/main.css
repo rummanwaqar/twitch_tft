@@ -19,6 +19,11 @@
   padding: 0;
 }
 
+html {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
 body {
   background-color: #021E20;
   color: white;
@@ -53,10 +58,25 @@ body {
 
 .header {
   display: flex;
+  justify-content: space-between;
 }
 
-.header .left {
-  flex: 50%;
+.level {
+  position: relative;
+  background-image: linear-gradient(to right, #81611D , #C79832);
+  
+  color: black;
+  letter-spacing: 0.1em;
+
+  padding: 2px 5px;
+}
+
+.level h2 {
+  font-size: 1.2em;
+}
+
+.level small {
+  font-size: 0.5em;
 }
 
 .result .fa {
