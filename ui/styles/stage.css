@@ -5,7 +5,7 @@ body {
 div {
   width: 508px;
   height: 322px;
-  background-image: url("images/background.png"); 
+  background-image: url("../images/background.png"); 
   position: relative;
 }
 
