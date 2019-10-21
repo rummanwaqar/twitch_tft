@@ -1,0 +1,21 @@
+/* resets */
+*,
+*::before,
+*::after {
+  /* sets the box sizing model to border box so 
+   * width and height parameters specify total 
+   * size of the container
+   */
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+
+  /*
+   * reset margin and padding
+   */
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+    
+}
