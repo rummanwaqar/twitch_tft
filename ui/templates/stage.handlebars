@@ -1,5 +1,11 @@
-<div>
-    <h2>Stage: {{data.stage}}</h2>
+<div id="stage_box">
+    <h2>Stage: {{data.stage}} | Win: {{data.win}}</h2>
     <p>Health: {{data.health}}</p>
-    
+    {{#each data.champions}}
+        <div>
+            <img src="images/champions/{{this.name}}.png" />
+            <h4>{{this.name}} | Level: {{this.level}}</h4>
+            <p>Damage: {{this.damage}}</p>
+        </div>
+    {{/each}}
 </div>
