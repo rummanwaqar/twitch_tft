@@ -21,7 +21,7 @@
 
 html {
   font-family: 'Poppins', sans-serif;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 body {
@@ -64,15 +64,26 @@ body {
 .level {
   position: relative;
   background-image: linear-gradient(to right, #81611D , #C79832);
-  
+  height: 30px;
+  line-height: 30px;
   color: black;
   letter-spacing: 0.1em;
 
-  padding: 2px 5px;
+  padding-left: 7px;
+  padding-right: 2px;
+}
+
+.level:before {
+  content: "";
+  position: absolute;
+  left: 100%;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 15px solid #C79832;
 }
 
 .level h2 {
-  font-size: 1.2em;
+  font-size: 1.1em;
 }
 
 .level small {

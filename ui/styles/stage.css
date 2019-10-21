@@ -9,7 +9,7 @@
 .stage_container {
   position: relative;
   background-repeat: no-repeat;
-  background-image: url("../images/stage_background.png");
+  background-image: url("../images/bg-lvl.png");
   width: 90px;
   height: 39px;
   align-content: center;
