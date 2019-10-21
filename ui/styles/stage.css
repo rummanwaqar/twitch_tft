@@ -2,7 +2,7 @@ body {
   background-color: powderblue;
 }
 
-div {
+#stage {
   width: 508px;
   height: 322px;
   background-image: url("../images/background.png"); 
