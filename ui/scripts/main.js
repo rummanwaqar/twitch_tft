@@ -44,7 +44,7 @@ function getChampionSize(i, champs, size_limits) {
 
 var border_colors = ["#A77044", "#D7D7D7", "#FFD700"];
 var image_base_url = "../images/champions/";
-var size_limits = [40, 90];
+var size_limits = [40, 80];
 
 var main = document.getElementById("container");
 
@@ -61,7 +61,8 @@ for(i=0; i<data['game_data'].length; i++) {
         var border_size = 5;
         var image_url =  image_base_url + champion_data.name + ".png";
 
-        champion_data.styles = "--size: " + size + "px; --border-size: " + border_size + "px; " + 
+        champion_data.styles = "--size: " + size + "px; " + 
+            "--border-size: " + border_size + "px; " + 
             "--border-color: " + border_color + "; " +
             "--background: url('" + image_url + "');";
     }

@@ -45,8 +45,6 @@ body {
   background-size: contain;
   box-shadow: 2px 2px 5px #111;
 
-  /* temp */
-  overflow: hidden;
   margin: 5px;
 }
 
@@ -56,4 +54,8 @@ body {
 
 .lose-bg {
   background-image: url("../images/bg-red.png");
+}
+
+.champions {
+  padding: 5px;
 }
