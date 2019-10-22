@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap');
 @import url(healthbar.css);
+@import url(champion.css);
 
 /* resets */
 *,
@@ -103,7 +104,7 @@ body {
   color: #C33232;
 }
 
-/* this is temp */
+/* this is temp
 .champion {
   display: inline-block;
   font-size: 0.5em;
@@ -111,4 +112,4 @@ body {
 
 .champion img {
   width: 20%;
-}
+} */

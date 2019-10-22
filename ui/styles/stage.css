@@ -1,7 +1,9 @@
+@import url(champion.css);
+
 .base_container {
   width: 508px;
   height: 322px;
-  background-image: url("../images/background.png");
+  background-image: url("../images/bg-green.png");
   background-color: black; 
   position: relative;
 }

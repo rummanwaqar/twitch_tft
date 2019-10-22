@@ -13,10 +13,10 @@
         </div>
     </div>
     {{#each data.champions}}
-        <div class="champion">
-            <img src="images/champions/{{this.name}}.png" />
-            <h4>{{this.name}} | Level: {{this.level}}</h4>
-            <p>Damage: {{this.damage}}</p>
+        <div class="champion" style="{{this.styles}}">
+            {{!-- <img src="images/champions/{{this.name}}.png" /> --}}
+            {{!-- <h4>{{this.name}} | Level: {{this.level}}</h4>
+            <p>Damage: {{this.damage}}</p> --}}
         </div>
     {{/each}}
     <div class="healthbar" style="width: {{data.health}}%; background-color: {{data.health_color}};">
