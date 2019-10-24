@@ -1,6 +1,5 @@
-<div id="stage_box">
+<div class="stage_box">
     <h2>Stage: {{data.stage}} | Win: {{data.win}}</h2>
-    <p>Health: {{data.health}}</p>
     {{#each data.champions}}
         <div>
             <img src="images/champions/{{this.name}}.png" />
@@ -8,4 +7,7 @@
             <p>Damage: {{this.damage}}</p>
         </div>
     {{/each}}
+    <div class="healthbar" style="width: {{data.health}}%; background-color: {{data.health_color}};">
+      {{data.health}}
+    </div>
 </div>

@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap');
+@import url(healthbar.css);
+
 /* resets */
 *,
 *::before,
@@ -21,7 +24,8 @@
     grid-template-columns: repeat(6, 1fr);
 }
 
-#stage_box {
+.stage_box {
   border: 1px solid black;
   margin: 5px;
+  position: relative;
 }

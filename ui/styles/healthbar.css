@@ -1,0 +1,19 @@
+.healthbar {
+    /* positioning */
+    height: 15px;
+    position: absolute;
+    bottom: 0;
+
+    /* health text */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.6em;
+    text-align: right;
+    line-height: 15px;
+    padding-top: 1px;
+    padding-right: 5px;
+
+    /* dynamic and replaces with JS*/
+    width: 50%;
+    background-color: #A3FF2E;
+}
