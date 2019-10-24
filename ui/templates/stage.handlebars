@@ -11,13 +11,11 @@
             {{/if}}
         </div>
     </div>
+    <div class="champions">
     {{#each data.champions}}
-        <div class="champion">
-            <img src="images/champions/{{this.name}}.png" />
-            <h4>{{this.name}} | Level: {{this.level}}</h4>
-            <p>Damage: {{this.damage}}</p>
-        </div>
+        <div class="champion" style="{{this.styles}}"></div>
     {{/each}}
+    </div>
     <div class="healthbar" style="width: {{data.health}}%; background-color: {{data.health_color}};">
       {{data.health}}
     </div>

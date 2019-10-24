@@ -25,13 +25,49 @@ function getColorFromHealth(health) {
     return "rgb(" + r + "," + g + "," + b + ")";
 }
 
+function getChampionSize(i, champs, size_limits) {
+    /*
+     * i: index of champion in array
+     * champs: champion array
+     * size_limits: [min size, max size] 
+     */
+    if(champs.length == 1) {
+        return size_limits[1];
+    }
+
+    // champs are sorted by health is descending order
+    health_limits = [champs[champs.length - 1].damage, champs[0].damage];
+
+    return (size_limits[1] - size_limits[0]) / (health_limits[1] - health_limits[0]) * 
+        (champs[i].damage - health_limits[1]) + size_limits[1];
+}
+
+var border_colors = ["#A77044", "#D7D7D7", "#FFD700"];
+var image_base_url = "../images/champions/";
+var size_limits = [40, 80];
+
 var main = document.getElementById("container");
 
 for(i=0; i<data['game_data'].length; i++) {
     var stage_data = data['game_data'][i];
     stage_data.health_color = getColorFromHealth(stage_data.health);
 
-    main.innerHTML += Handlebars.templates.stage({data: stage_data});
+    for(var j=0; j < stage_data.champions.length; j++) {
+        var champion_data = stage_data.champions[j];
+
+        // generate custom styles
+        var border_color = border_colors[champion_data.level - 1];
+        var size = getChampionSize(j, stage_data.champions, size_limits);
+        var border_size = 5;
+        var image_url =  image_base_url + champion_data.name + ".png";
+
+        champion_data.styles = "--size: " + size + "px; " + 
+            "--border-size: " + border_size + "px; " + 
+            "--border-color: " + border_color + "; " +
+            "--background: url('" + image_url + "');";
+    }
+
+    main.innerHTML += Handlebars.templates.stage({data: stage_data});  
 
     // add three empty boxes because Level 1 has 3 stages instead of 6
     if (stage_data.stage === '1-3' && data['game_data'].length > 3) {
