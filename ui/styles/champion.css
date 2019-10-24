@@ -1,0 +1,37 @@
+/* builds the border */
+.champion {
+    --size: 50px;
+    --border: 4px;
+    --background: none;
+    --border-color: #A77044;
+
+    position: relative;
+    height: var(--size);
+    width: var(--size);
+    background: var(--border-color);
+}
+
+/* contains the actual image */
+.champion::before {
+    top: var(--border);
+    left: var(--border);
+    height: calc(100% - var(--border) * 2);
+    width: calc(100% - var(--border) * 2);
+
+    position: absolute;
+    content: '';
+    background-image: var(--background);
+    background-position: center center;
+    background-size: 110%;
+    background-repeat: no-repeat;
+}
+
+.champion,
+.champion:before {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.champion {
+    display: inline-block;
+    margin: 2px;
+}

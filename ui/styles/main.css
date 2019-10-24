@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,400,500,600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Merriweather:400,700&display=swap');
+@import url(header.css);
+@import url(healthbar.css);
+@import url(champion.css);
+@import url(top-header.css);
+
+/* resets */
+*,
+*::before,
+*::after {
+  /* sets the box sizing model to border box so 
+   * width and height parameters specify total 
+   * size of the container
+   */
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+
+  /*
+   * reset margin and padding
+   */
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+}
+
+body {
+  background-color: #021E20;
+  color: white;
+  /* used for border */
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #F6C653;
+}
+
+#container {
+  padding: 5px;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.stage_box {
+  position: relative;
+  height: 225px;
+
+  background-color: #0A0A0A;
+  background-size: contain;
+  box-shadow: 2px 2px 5px #111;
+
+  margin: 5px;
+}
+
+.win-bg {
+  background-image: url("../images/bg-green.png");
+}
+
+.lose-bg {
+  background-image: url("../images/bg-red.png");
+}
+
+.champions {
+  padding: 5px;
+}

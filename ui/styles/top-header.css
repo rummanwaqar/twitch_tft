@@ -1,0 +1,63 @@
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(rgba(165, 106, 38, 1) 0%, rgba(128, 79, 32, 0.5) 70%, rgba(182, 99, 31, 0.03) 100%);
+    padding: 25px 55px;
+    padding-bottom: 70px;
+}
+
+.top-header .left {
+    display: flex;
+    flex-direction: row;
+}
+
+/* Streamer Image */
+.top-header .image-rounded {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 30px;
+}
+
+.image-rounded img {
+    display: block;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.top-header .title, .top-header .standing {
+    display: flex;
+    flex-direction: column;
+}
+
+.top-header h1 {
+    color: #F6C653;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.top-header h2 {
+    font-weight: 200;
+    color: #AEAFAF;
+}
+
+.top-header .standing {
+    text-align: center;
+    padding-top: 5px;
+    font-family: 'Merriweather', serif;
+}
+
+.top-header .standing h3 {
+    color: #EDF7F6;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.4em;
+}
+
+.top-header .standing p {
+    color: #F6E231;
+    font-weight: 400;
+    font-size: 2.7em;
+}
