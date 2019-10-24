@@ -1,7 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,400,500,600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Merriweather:400,700&display=swap');
 @import url(header.css);
 @import url(healthbar.css);
 @import url(champion.css);
+@import url(top-header.css);
 
 /* resets */
 *,
@@ -29,6 +31,10 @@ html {
 body {
   background-color: #021E20;
   color: white;
+  /* used for border */
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #F6C653;
 }
 
 #container {

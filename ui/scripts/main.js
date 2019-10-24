@@ -42,11 +42,26 @@ function getChampionSize(i, champs, size_limits) {
         (champs[i].damage - health_limits[1]) + size_limits[1];
 }
 
+// generate top header information
+var headerElem = document.getElementById("top-header");
+// append streamer base url to streamer img 
+data['header'].streamer.img = "../images/" + data['header'].streamer.img;
+if (data['header'].standing == 1) {
+    data['header'].standing = '1st';
+} else if (data['header'].standing == 1) {
+    data['header'].standing = '2nd';
+} else if (data['header'].standing == 1) {
+    data['header'].standing = '3rd';
+} else {
+    data['header'].standing = data['header'].standing + 'th';
+}
+headerElem.innerHTML += Handlebars.templates.top_header({data: data['header']});
+
+// generate game data
 var border_colors = ["#A77044", "#D7D7D7", "#FFD700"];
 var image_base_url = "../images/champions/";
-var size_limits = [40, 80];
-
-var main = document.getElementById("container");
+var size_limits = [40, 75];
+var mainElem = document.getElementById("container");
 
 for(i=0; i<data['game_data'].length; i++) {
     var stage_data = data['game_data'][i];
@@ -67,12 +82,12 @@ for(i=0; i<data['game_data'].length; i++) {
             "--background: url('" + image_url + "');";
     }
 
-    main.innerHTML += Handlebars.templates.stage({data: stage_data});  
+    mainElem.innerHTML += Handlebars.templates.stage({data: stage_data});  
 
     // add three empty boxes because Level 1 has 3 stages instead of 6
     if (stage_data.stage === '1-3' && data['game_data'].length > 3) {
-        main.innerHTML += '<div></div>';
-        main.innerHTML += '<div></div>';
-        main.innerHTML += '<div></div>';
+        mainElem.innerHTML += '<div></div>';
+        mainElem.innerHTML += '<div></div>';
+        mainElem.innerHTML += '<div></div>';
     }
 }
